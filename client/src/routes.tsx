@@ -3,14 +3,78 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorElement from "./components/common/error-element";
 import { Student, Admin } from "./App";
 import { Instructor } from "./App";
+import InstructorDashboard from "./components/pages/instructors/instructor-dash-board";
+import StripeContainer from "./components/pages/payment-stripe/stripe-container";
+import AddCategory from "./components/pages/categories/add-category";
+import EditCategory from "./components/pages/categories/edit-category";
+import ListCategories from "./components/pages/categories/list-category";
 import DashHome from "./components/pages/student-dash/dash-home";
+import InstructorChannels from "./components/pages/channel/instructor-channels";
 
+const LazyListCourse = lazy(
+  () => import("./components/pages/course-pages/list-course")
+);
 
+const LazyInstructorsListing = lazy(
+  () => import("./components/pages/instructors/list-all-instructors")
+);
 
 const LazyStudentDash = lazy(
   () => import("./components/pages/student-dash/user-dashboard")
 );
 
+const LazyInstructorIndex = lazy(
+  () =>
+    import("./components/pages/instructor-management/view-instructors-index")
+);
+
+const LazyStudents = lazy(
+  () => import("./components/pages/student-management/students-tab")
+);
+
+const LazyCategories = lazy(
+  () => import("./components/pages/categories/category-page")
+);
+
+const LazyViewCourse = lazy(
+  () => import("./components/pages/course-pages/view-course")
+);
+
+const LazyWatchLesson = lazy(
+  () => import("./components/pages/course-pages/watch-lesson")
+);
+
+const LazyAddCourse = lazy(
+  () => import("./components/pages/add-course/add-course-form")
+);
+
+const LazyViewLesson = lazy(
+  () => import("./components/pages/add-lesson/view-lessons")
+);
+
+const LazyListCourseInstructors = lazy(
+  () => import("./components/pages/add-lesson/list-course-for-instructors")
+);
+
+const LazyEditLesson = lazy(
+  () => import("./components/pages/add-lesson/edit-lesson")
+);
+
+const LazyEditCourse = lazy(
+  () => import("./components/pages/add-course/edit-course")
+);
+
+const LazyMyStudents = lazy(
+  () => import("./components/pages/instructors/my-students")
+);
+
+const LazyInstructorProfile = lazy(
+  () => import("./components/pages/instructors/insructor-profile")
+);
+
+const LazyViewInstructor = lazy(
+  () => import("./components/pages/instructors/view-instructor")
+);
 
 const LazyStudentProfile = lazy(
   () => import("./components/pages/student-dash/my-profile")
@@ -36,7 +100,27 @@ const LazyInstructorLogin = lazy(
 const LazyInstructorRegister = lazy(
   () => import("./components/pages/instructors/instructor-register-page")
 );
+const LazyAdminHome = lazy(
+  () => import("./components/pages/admin/admin-home-page")
+);
+const LazyInstructorRequests = lazy(
+  () =>
+    import("./components/pages/instructor-management/viewInstructor-requests")
+);
+const LazyViewMoreInstructorRequest = lazy(
+  () =>
+    import(
+      "./components/pages/instructor-management/view-more-instructor-request"
+    )
+);
+const LazyViewBlockedInstructors = lazy(
+  () =>
+    import("./components/pages/instructor-management/view-blocked-instructors")
+);
 
+const LazyCommunity = lazy(
+  () => import("./components/pages/community/community-home")
+);
 
 const LazyAboutUs = lazy(() => import("./components/pages/about/about-us"));
 

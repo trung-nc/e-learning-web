@@ -5,17 +5,25 @@ import { Outlet } from "react-router-dom";
 import AdminLoginPage from "./components/pages/admin/admin-login-page";
 // import { Sidenav } from "./components/pages/admin/widgets/layout";  
 import { useSelector, useDispatch } from "react-redux";
+import InstructorSideNav from "./components/pages/instructors/instructor-side-nav";
+import InstructorHeader from "./components/pages/instructors/instructor-header";
+import useIsOnline from "./hooks/useOnline";
 import YouAreOffline from "./components/common/you-are-offline";
 import StudentFooter from "./components/partials/student-footer";
 import { selectIsLoggedIn, selectUserType } from "./redux/reducers/authSlice";
+import { selectIsFooterVisible } from "./redux/reducers/helperSlice";
 import { fetchStudentData } from "./redux/reducers/studentSlice";
 import SessionExpired from "./components/common/session-expired-modal";
 import InstructorLoginPage from "./components/pages/instructors/instructor-login-page";
+import { getInstructorDetails } from "./api/endpoints/instructor";
 import { setDetails } from "./redux/reducers/instructorSlice";
+import { AdminSideNav } from "./components/pages/admin/admin-side-nav";
 import { toast } from "react-toastify";   
 
 export const Student: React.FC = () => {
+  const isOnline = useIsOnline();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const footerVisible = useSelector(selectIsFooterVisible);
   const dispatch = useDispatch();
   const isHeaderVisible = true;
   const user = useSelector(selectUserType);
@@ -60,14 +68,39 @@ export const Student: React.FC = () => {
           onClose={handleCloseSessionExpired}
         />
       )}
+      {isOnline ? (
+        <div className='bg-white font-sans'>
+          <div className={`${headerClassName}`}>
+            <StudentHeader />
+          </div>
+          <Outlet />
+          {footerVisible && <StudentFooter />}
+        </div>
+      ) : (
+        <YouAreOffline />
+      )}
     </>
   );
 };
 
 export const Instructor: React.FC = () => {
+  const isOnline = useIsOnline();
   const user = useSelector(selectUserType);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
+  const fetchInstructor = async () => {
+    try {
+      const response = await getInstructorDetails();
+      console.log(response.data);
+      dispatch(setDetails({details:response.data}))
+    } catch (error) {
+      toast.error("Something went wrong!!!")
+    }
+  };
+
+  useEffect(() => {
+    fetchInstructor();
+  }, []);
 
   return (
     <>
