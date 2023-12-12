@@ -11,3 +11,10 @@ export const addCategoryService = async (
     );
     return response;
 };
+
+export const getCategoriesService = async (endpoint: string) => {
+    const response = await api.get(
+        `${CONFIG_KEYS.API_BASE_URL}/${endpoint}`
+    );
+    return response.data;
+};
