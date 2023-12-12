@@ -5,6 +5,7 @@ WORKDIR /app/client
 
 # Copy the client application files
 COPY ./client/package.json ./client/package-lock.json ./
+RUN npm i
 RUN npm install
 
 COPY ./client ./
@@ -17,6 +18,7 @@ WORKDIR /app/server
 
 # Copy the server application files
 COPY ./server/package.json ./server/package-lock.json ./
+RUN npm i
 RUN npm install
 
 COPY ./server ./
