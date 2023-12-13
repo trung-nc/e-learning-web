@@ -18,3 +18,13 @@ export const getCategoriesService = async (endpoint: string) => {
     );
     return response.data;
 };
+
+export const getCategoryByIdService = async (
+    endpoint: string,
+    categoryId: string
+) => {
+    const response = await api.get(
+        `${CONFIG_KEYS.API_BASE_URL}/${endpoint}/${categoryId}`
+    );
+    return response.data;
+};
