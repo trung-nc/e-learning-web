@@ -28,3 +28,15 @@ export const getCategoryByIdService = async (
     );
     return response.data;
 };
+
+export const editCategoryByIdService = async (
+    endpoint: string,
+    categoryId: string,
+    categoryInfo: { name?: string; description?: string }
+) => {
+    const response = await api.put(
+        `${CONFIG_KEYS.API_BASE_URL}/${endpoint}/${categoryId}`,
+        categoryInfo
+    );
+    return response.data;
+};
