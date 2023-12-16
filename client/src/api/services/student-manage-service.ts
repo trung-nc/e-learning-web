@@ -22,3 +22,10 @@ export const unblockStudentService = async (
     );
     return response.data;
 };
+
+export const getAllBlockedStudentsService = async (endpoint: string) => {
+    const response = await api.get(
+        `${CONFIG_KEYS.API_BASE_URL}/${endpoint}`
+    );
+    return response.data;
+};
