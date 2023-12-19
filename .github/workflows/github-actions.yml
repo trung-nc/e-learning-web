@@ -18,6 +18,8 @@ jobs:
         with:
           username: "danglong7802"  
           password: "danklonk7802"
+      - name: Check ls
+        run: ls -l
       
       - name: Build Docker image
         run: docker build -t elearning .  
