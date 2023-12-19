@@ -27,7 +27,7 @@ const io = new Server<ClientToServerEvents,ServerToClientEvents,InterServerEvent
   } 
 });
 
-socketConfig(io,authService())  
+socketConfig(io,authService())
 
 //* connecting mongoDb 
 connectToMongoDb();
